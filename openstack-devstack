@@ -1,0 +1,37 @@
+sudo apt-get update && sudo apt-get upgrade -y
+sudo useradd -s /bin/bash -d /opt/stack -m stack
+echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
+sudo su - stack
+git clone https://opendev.org/openstack/devstack
+cd devstack
+nano local.conf
+
+
+
+
+
+[[local|localr]]
+ 
+ADMIN_PASSWORD=StrongAdminSecret
+DATABASE_PASSWORD=$ADMIN_PASSWOCinder
+RABBIT_PASSWORD=$ADMIN_PASSWORD
+SERVICE_PASSWORD=$ADMIN_PASSWORD
+
+Note:
+1. StrongAdminSecret is the password we used here, you can change it with your choice.
+
+./stack.sh (Start the machine)
+
+Horizon – OpenStack Dashboard
+Keystone – Identity Service
+Nova – Compute Service
+Glance – Image Service
+Neutron – Network Service
+Placement – Placement API
+Cinder – Block Storage Service
+
+Browse this URL on your browser –
+
+https://server-ip/dashboard
+
+link - https://www.linuxfordevices.com/tutorials/ubuntu/install-openstack-on-ubuntu
